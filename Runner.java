@@ -1,4 +1,4 @@
-/*  TravelerNode Class
+/*  Djikstras Test Client
     Name: Ethan Chen
     Date Completed: March 1, 2020
 */
