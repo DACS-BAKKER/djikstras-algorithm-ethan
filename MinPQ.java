@@ -32,7 +32,7 @@ public class MinPQ { // a heap-based Min priority queue for TravelerNodes
                     x = backIndex; // ends for loop - should never be more than 1 duplicate
                     backIndex++; // adds back to an empty spot
                     initialIndex = backIndex;
-                    StdOut.println("lower " + node.currentIntersection.identifier + ": " + node.distanceFromStart); // for testing
+                   // StdOut.println("lower " + node.currentIntersection.identifier + ": " + node.distanceFromStart); // for testing
                 } else { // if the duplicate has smaller priority than new node, discard the new node
                     backIndex--; // reduce back to index of last object
                     return;

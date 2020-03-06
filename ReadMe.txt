@@ -24,9 +24,9 @@ Extra Files:
 
 Analysis: (More on Paper)
 This Djikstra's Algorithm is able to compute a path across the United States (from the top left corner of Washington to
-the bottom right of Florida, as tested in DjikstrasUSGraphics) in ~1.2 second. Considering this method checks every path
+the bottom right of Florida, as tested in DjikstrasUSGraphics) in ~0.25 second. Considering this method checks every path
 until it finds the solution, it effectively spans to 3/4 of all of the intersections, computing and reaching more than
-60000 objects. This is fairly effective, but with my optimization I can lower it to ~1.1 second. This is not a lot of time,
+60000 objects. This is fairly effective, but with my optimization I can lower it to ~0.2 second. This is not a lot of time,
 but for a computer it is certainly significant.
 
 As well, Djikstra's Algorithm, as it is a weighted breadth-first search, will always find the shortest path from point
@@ -38,7 +38,10 @@ My additional touch: On top of creating the general Djikstra's algorithm, I also
 algorithm a bit faster and more similar to the A* algorithm. By giving each node access to the end node, it can add
 on a value to its priority equal to half its distance from the end point (didn't want to do the entire distance so the
 distance to start still has more weight). This allows for those points that are moving closer to the end point to be
-higher up on the priority queue than those moving away, even if they have the same distance from the start.
+higher up on the priority queue than those moving away, even if they have the same distance from the start. The
+optimization is more effective in central areas, when the Djikstra's Algorithm may at times visit nodes further away
+from the end, my optimization will reduce that searching. For example, for a path from Topeka to southern Florida, the
+regular algorithm takes ~0.35 seconds while my optimized version takes ~0.25.
 
 Here I will briefly describe some of the issues I had while coding this:
 

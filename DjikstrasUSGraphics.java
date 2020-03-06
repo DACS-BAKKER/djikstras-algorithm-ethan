@@ -189,7 +189,10 @@ public class DjikstrasUSGraphics extends Canvas { // Graphical User Interface
                 try {
                     Stopwatch stop = new Stopwatch();
                     maprouting = new DjikstrasSolver(starting, ending, new File("src/usa.txt"), false);
-                    StdOut.println("Time to find route: " + stop.elapsedTime() + " seconds");
+                    double elapsed = stop.elapsedTime();
+                    maprouting.printSolution();
+                    StdOut.println("Time to find route: " + elapsed + " seconds");
+
                 } catch (IOException d) {
                     d.printStackTrace();
                 }

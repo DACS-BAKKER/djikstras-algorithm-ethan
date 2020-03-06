@@ -41,7 +41,7 @@ public class DjikstrasSolver { // Finds the shortest path between a start and en
         TravelerNode currNode;
         while (!queue.isEmpty()) {
             currNode = queue.dequeue(); // take off the front of the queue
-            StdOut.println("process " + currNode.currentIntersection.identifier + ": " + currNode.distanceFromStart); // used for testing
+           // StdOut.println("process " + currNode.currentIntersection.identifier + ": " + currNode.distanceFromStart); // used for testing
             visited[currNode.currentIntersection.identifier] = true; // once it is taken off, set visited value to true, so you can never circle back
             if (currNode.currentIntersection.identifier == end) { // if it is solution
                 return currNode;
@@ -64,12 +64,13 @@ public class DjikstrasSolver { // Finds the shortest path between a start and en
     public Iterable<TravelerNode> getSolution() { // gives an iterable method that gives each TravelerNode along the solution path
 
         totalDistance = solutionNode.distanceFromStart;
+        TravelerNode traversalNode = solutionNode.copy();
         Stack<TravelerNode> stack = new Stack<TravelerNode>();
-        stack.push(solutionNode);
+        stack.push(traversalNode);
 
-        while (solutionNode.lastNode != null) { // adds the solution path (which is backwards) to stack to put in correct order
-            solutionNode = solutionNode.lastNode;
-            stack.push(solutionNode);
+        while (traversalNode.lastNode != null) { // adds the solution path (which is backwards) to stack to put in correct order
+            traversalNode = traversalNode.lastNode;
+            stack.push(traversalNode);
         }
 
         // iterator class

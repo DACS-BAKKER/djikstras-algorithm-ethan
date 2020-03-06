@@ -35,6 +35,15 @@ public class TravelerNode implements Comparable<TravelerNode> { // Intersection,
         }
     }
 
+    // creates a copy of a traveler's node, necessary in the getSolution method in DjikstrasSolver. If you do not copy
+    // the solution node it ends up changing it, so instead you must make a copy.
+    public TravelerNode copy() {
+       TravelerNode copy = new TravelerNode(this.currentIntersection, this.lastNode);
+       copy.distanceFromStart = this.distanceFromStart;
+       copy.priorityDistance = this.priorityDistance;
+       return copy;
+    }
+
     private double addedDistance() { // pythagorean distance between current intersection and last intersection
         Intersection lastIntersection = lastNode.currentIntersection;
         int xDiff = currentIntersection.xCoord - lastIntersection.xCoord;
