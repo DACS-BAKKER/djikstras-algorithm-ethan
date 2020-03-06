@@ -25,7 +25,7 @@ public class MinPQ { // a heap-based Min priority queue for TravelerNodes
     private void addNode(TravelerNode node) { // actually puts the node on the priority queue
         int initialIndex = backIndex; // index of the object you are putting in
 
-        for(int x = 1; x<backIndex; x++) { // checking for duplicates
+        for(int x = 1; x<backIndex; x++) { // checking for duplicates (PART 1 OF REMOVING DUPLICATES)
             if(heapPriorityQueue[x].currentIntersection.identifier == node.currentIntersection.identifier) {
                 if(node.compareTo(heapPriorityQueue[x]) == -1) { // duplicate has greater priority than new node
                     removeCopy(x); // NOTE: this reduces backIndex twice to account for removing 1 and to reduce to the last object in the min priority queue
@@ -47,6 +47,7 @@ public class MinPQ { // a heap-based Min priority queue for TravelerNodes
             }
     }
 
+    //PART 2 OF REMOVING DUPLICATES
     private void removeCopy(int indexOfRemoval) { // removes the copy
         heapPriorityQueue[indexOfRemoval] = heapPriorityQueue[backIndex-1]; // puts the last object at the location of the one it is swapping with
         heapPriorityQueue[backIndex-1] = null; // removes the very last object
@@ -75,7 +76,8 @@ public class MinPQ { // a heap-based Min priority queue for TravelerNodes
         return item;
     }
 
-    private void reworkPQ(int indexOfMoving) {
+    //SINK METHOD, used when dequeuing, or removing copy
+    private void reworkPQ(int indexOfMoving) { // generalized indexOfMoving instead of 1 so I can use this method to sink from any index (important for removing copy)
         int currIndex = indexOfMoving; // start index
         int nextIndex1 = currIndex*2; // left location in heap
         int nextIndex2 = currIndex*2+1; // right location in heap
